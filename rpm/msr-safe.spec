@@ -2,8 +2,8 @@
 %global shortrev    %(r=%{rev}; echo ${r:0:12})
 
 Name:       msr-safe
-Version:    0
-Release:    0.4.git%{shortrev}%{?dist}
+Version:    1.2.0
+Release:    git%{shortrev}%{?dist}
 License:    GPLv3+
 Summary:    Allows safer access to model specific registers (MSRs)
 Url:        https://github.com/LLNL/msr-safe
