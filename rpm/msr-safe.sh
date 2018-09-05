@@ -17,10 +17,10 @@ start() {
   fi
 
   if [ -z "${WHITELIST:-}" ]; then
-    WHITELIST="/usr/share/msr-safe/whitelists/${WL_CPU}" 
+    WHITELIST="/usr/share/msr-safe/whitelists/${WL_CPU}"
   fi
 
-  if [ -f "/usr/share/msr-safe/whitelists/${WL_CPU}" ]; then
+  if [ -f "${WHITELIST}" ]; then
     /sbin/modprobe msr-safe && \
     cat "${WHITELIST}" > /dev/cpu/msr_whitelist
 
@@ -40,7 +40,6 @@ stop() {
 rc=0
 
 case "${1:-}" in
-  
   start)
       start
       rc=$?
