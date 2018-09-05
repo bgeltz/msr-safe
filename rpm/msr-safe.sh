@@ -22,7 +22,8 @@ start() {
 
   if [ -f "${WHITELIST}" ]; then
     /sbin/modprobe msr-safe && \
-    cat "${WHITELIST}" > /dev/cpu/msr_whitelist
+    cat "${WHITELIST}" > /dev/cpu/msr_whitelist && \
+    msrsave /tmp/$(hostname -s).msrs
 
     return $?
   else
@@ -32,7 +33,8 @@ start() {
 
 stop() {
     echo > /dev/cpu/msr_whitelist && \
-    /sbin/rmmod msr-safe
+    /sbin/rmmod msr-safe && \
+    msrsave -r /tmp/$(hostname -s).msrs
 
     return $?
 }
