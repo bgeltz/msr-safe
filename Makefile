@@ -64,7 +64,8 @@ SLURM_LDFLAGS ?= -L/usr/lib64 -lslurm -shared
 GEOPM_INC ?= /usr/include
 GEOPM_LIB ?= /usr/lib64
 GEOPM_CFLAGS ?= -I$(GEOPM_INC)
-GEOPM_LDFLAGS ?= -L$(GEOPM_LIB) -lgeopmpolicy
+# GEOPM_LDFLAGS ?= -L$(GEOPM_LIB) -lgeopmpolicy -Wl,-rpath=$(GEOPM_LIB)
+GEOPM_LDFLAGS ?= -L$(GEOPM_LIB) -lgeopmpolicy -Wl,-rpath -Wl,$(GEOPM_LIB)
 
 spank: msrsave/libspank_msrsafe.so geopm/libspank_geopm.so
 
